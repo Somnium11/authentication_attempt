@@ -56,11 +56,66 @@ func getLaptopByID(c *gin.Context) {
     c.IndentedJSON(http.StatusNotFound, gin.H{"message": "laptop not found"})
 }
 
+// func putLaptopsByID(c *gin.Context) {
+//     id := c.Param("id")
+//     var laptop laptop
+//     if err := c.BindJSON(&laptop); err != nil {
+//         c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+//         return
+//     }
+//     // Update the laptop with the given ID
+//     if err := updateLaptop(id, laptop); err != nil {
+//         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+//         return
+//     }
+//     c.JSON(http.StatusOK, gin.H{"message": "Laptop updated successfully"})
+// }
+
+// func deleteLaptopsByID(c *gin.Context) {
+//     id := c.Param("id")
+//     // Delete the laptop with the given ID
+//     if err := deleteLaptop(id); err != nil {
+//         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+//         return
+//     }
+//     c.JSON(http.StatusOK, gin.H{"message": "Laptop deleted successfully"})
+// }
+// func patchLaptopsByID(c *gin.Context) {
+//     id := c.Param("id")
+//     var laptop laptop
+//     if err := c.BindJSON(&laptop); err != nil {
+//         c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+//         return
+//     }
+//     // Partially update the laptop with the given ID
+//     if err := patchLaptop(id, laptop); err != nil {
+//         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+//         return
+//     }
+//     c.JSON(http.StatusOK, gin.H{"message": "Laptop updated successfully"})
+// }
+
+// func traceLaptopsByID(c *gin.Context) {
+//     id := c.Param("id")
+//     // Return the laptop with the given ID
+//     laptop, err := getLaptop(id)
+//     if err != nil {
+//         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+//         return
+//     }
+//     c.JSON(http.StatusOK, laptop)
+// }
+
 func main() {
     router := gin.Default()
     router.GET("/laptops", getLaptops)
     router.GET("/laptops/:id", getLaptopByID)
-    router.POST("/laptops", postLaptops)
+    router.POST("/laptops", postLaptops)    
+    // router.PUT("/laptops/:id", putLaptopsByID)
+    // router.DELETE("/laptops/:id", deleteLaptopsByID)
+    // router.PATCH("/laptops/:id", patchLaptopsByID)
+    // router.HEAD("/laptops/:id", traceLaptopsByID)
+
 
     router.Run("localhost:8080")
 }
